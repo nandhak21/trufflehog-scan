@@ -1,8 +1,18 @@
 name: trufflehog-scan
 run-name: ${{ github.actor }}
-on: [push]
-jobs:
+on:
+  push:
+  schedule:
+    cron: "0 0 * * *"
+jobs: 
   runs-trufflehog:
     runs-on: ['self-hosted-desktop']
     steps:
-      - run: podman run -it trufflesecurity/trufflehog:latest github --org=Toyota-Connected-India --include-forks --json
+      - run: podman run -it trufflesecurity/trufflehog:latest github --org=Toyota-Connected-India --include-forks --json > findings.json
+      - run: cat findings.json  
+      - name: upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: findings-report
+          path:
+            findings.json
