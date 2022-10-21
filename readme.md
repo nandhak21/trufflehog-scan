@@ -1,0 +1,1 @@
+Testing trufflehog scan logs
