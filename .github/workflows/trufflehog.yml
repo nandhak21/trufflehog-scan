@@ -3,7 +3,7 @@ run-name: ${{ github.actor }}
 on:
   push:
   schedule:
-    cron: "0 0 * * *"
+    - cron: "0 0 * * *"
 jobs: 
   runs-trufflehog:
     runs-on: ['self-hosted-desktop']
