@@ -3,6 +3,6 @@ run-name: ${{ github.actor }}
 on: [push]
 jobs:
   runs-trufflehog:
-    runs-on: wsl-almalinux-desktop
+    runs-on: ['self-hosted-desktop']
     steps:
       - run: podman run -it trufflesecurity/trufflehog:latest github --org=Toyota-Connected-India --include-forks --json
